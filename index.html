@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto Mono:regular,bold,bolditalic"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <title>Mortgage Affordability Calculator</title>
+    <style>
+      body {
+        font-family: "Roboto Mono";
+        margin: 0;
+        padding: 0px;
+        background: black;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+
+      #result {
+        text-align: center;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body class="flex-none sm:flex sm:flex-wrap md:p-6">
+    <section class="bg-purple p-8 pb-20 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3">
+      <h1 class="font-bold text-3xl text-left text-white mb-5 md:text-2xl">
+        The "Budget-Aligned" Mortgage Affordability Calculator
+      </h1>
+      <img class="animated" src="./hero-1.png" />
+      <h1 class="animated font-bold text-xl text-center text-white">
+        Take control of your financial well-being
+      </h1>
+    </section>
+    <section
+      class="bg-paper bg-[url(./hero-2.png)] bg-cover bg-center p-8 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3"
+    >
+      <h1
+        class="animated bg-paper font-semibold text-xl text-center text-gray-900 my-52 p-3"
+      >
+        Traditional mortgage calculators often lead you astray by starting with
+        the purchase price or household income, pushing you towards properties
+        beyond your means. This mortgage affordability calculator takes a
+        different approach.
+      </h1>
+    </section>
+    <section
+      class="bg-pink bg-[url(./hero-3.png)] bg-cover bg-center p-8 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3"
+    >
+      <h1 class="animated font-semibold text-xl text-center text-gray-900 my-52 p-3">
+        This mortgage affordability calculator prioritizes your desired mortgage
+        payment, ensuring you stay within your budget.
+      </h1>
+    </section>
+    <section class="bg-darkBlue p-8 py-16 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3">
+      <h1 class="text-yellow font-bold text-4xl text-left text-white mb-10">
+        Enter Your Budget
+      </h1>
+      <form id="calculator-form">
+        <div class="flex flex-col gap-4 text-white">
+          <label for="payment-amount">Desired Mortgage Payment Amount</label>
+          <input
+            class="rounded rounded-full bg-slate-200 text-gray-900"
+            type="number"
+            id="payment-amount"
+            step="0.01"
+          />
+          <label for="payment-frequency"
+            >Desired Mortgage Payment Frequency</label
+          >
+          <select
+            id="payment-frequency"
+            class="rounded rounded-lg bg-slate-200 p-3 text-gray-900"
+          >
+            <option value="biweekly">Bi-weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+          <label for="interest-rate">Annual Interest Rate (in %)</label>
+          <input
+            type="number"
+            class="rounded rounded-full bg-slate-200 text-gray-900"
+            id="interest-rate"
+            step="0.01"
+          />
+          <label for="loan-term">Loan Term (in years):</label>
+          <input
+            type="number"
+            class="rounded rounded-full bg-slate-200 text-gray-900"
+            id="loan-term"
+          />
+          <label for="down-payment">Down payment you want to put</label>
+          <input
+            class="rounded rounded-full bg-slate-200 text-gray-900 px-5"
+            type="number"
+            id="down-payment"
+            step="0.01"
+          />
+        </div>
+        <button
+          class="font-bold text-lg rounded rounded-full drop-shadow-lg border-b-4 border-yellow-700 bg-yellow text-gray-900 py-4 px-8 mt-10"
+          type="submit"
+        >
+          Calculate
+        </button>
+      </form>
+    </section>
+
+    <section
+      id="result"
+      class="bg-darkBlue p-8 py-16 border-yellow border-t-8 sm:w-full md:w-1/2 lg:w-1/3 xl:w-1/3"
+    >
+      <div id="resultDiv" class="flex flex-col gap-6 p-8">
+        <p class="text-white mb-10">Based on your inputs:</p>
+        <p class="text-white">
+          The <span class="font-bold">purchase price</span> you want to afford
+          is
+        </p>
+        <p id="affordablePurchasePrice" class="text-xl text-yellow">
+          $0
+        </p>
+        <p class="text-white">
+          The estimated <span class="font-bold">loan amount</span> is
+        </p>
+        <p id="loanAmount" class="text-xl text-yellow"> $0</p>
+        <p class="text-white">
+          The <span class="font-bold">down payment</span> you want to put is
+        </p>
+        <p id="downpaymentPercentage" class="text-xl text-yellow">0%</p>
+        <img class="animated" src="./hero-4.png" />
+      </div>
+    </section>
+    <section class="bg-yellow p-8 py-16 sm:min-w-xs lg:w-1/3" >
+      <h1 class="font-semibold text-3xl text-center text-darkBlue mb-20 p-3">
+        "Don't let financial limitations define you; let them inspire you to be
+        resourceful, creative, and determined to achieve your goals."
+      </h1>
+      <h5 class="text-center">Made with love by <a href="https://twitter.com/angloo2021" class="underline font-semibold">@angloo2021</a> </h5>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
