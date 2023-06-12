@@ -29,6 +29,10 @@ const form = document.getElementById("calculator-form");
 const resultDiv = document.getElementById("result");
 
 form.addEventListener("submit", function (event) {
+  mixpanel.init('5ce9e6e7c3258cf1e2beb0db39137698', {debug: true});
+  mixpanel.track('Submitted Form', {
+    'SubmitType': 'Calculate'
+  })
   event.preventDefault();
   const paymentAmount = parseFloat(
     document.getElementById("payment-amount").value
