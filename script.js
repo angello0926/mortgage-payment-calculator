@@ -14,17 +14,16 @@ tailwind.config = {
 
 const sr = ScrollReveal({
   reset: true, // Reset the animation when scrolling past the element
-  distance: '100px', // Distance the element moves during the animation
+  distance: "100px", // Distance the element moves during the animation
   duration: 1000, // Duration of the animation (in milliseconds)
-  easing: 'ease-out', // Easing function applied to the animation
+  easing: "ease-out", // Easing function applied to the animation
   viewFactor: 0.2, // Percentage of the element's visibility required to trigger the animation
 });
 
-sr.reveal('.animated', {
-  origin: 'top', // Starting position of the element
+sr.reveal(".animated", {
+  origin: "top", // Starting position of the element
   delay: 100, // Delay before the animation starts (in milliseconds)
 });
-
 
 const form = document.getElementById("calculator-form");
 const resultDiv = document.getElementById("result");
@@ -36,8 +35,9 @@ form.addEventListener("submit", function (event) {
   );
   const paymentFrequency = document.getElementById("payment-frequency").value;
   const interestRate = parseFloat(
-    document.getElementById("interest-rate").value
+    getInterestRate()
   );
+  console.log("interest rate selected:", interestRate)
   const loanTerm = parseFloat(document.getElementById("loan-term").value);
   const downPayment = parseFloat(document.getElementById("down-payment").value);
 
@@ -63,7 +63,6 @@ form.addEventListener("submit", function (event) {
   const formattedAffordablePurchasePrice =
     affordablePurchasePrice.toLocaleString("en-US", options);
   const formattedLoanAmount = loanAmount.toLocaleString("en-US", options);
-  const resultDiv = document.getElementById("result");
   const affordablePurchasePriceElement = document.getElementById(
     "affordablePurchasePrice"
   );
@@ -78,7 +77,6 @@ form.addEventListener("submit", function (event) {
     (downPayment / affordablePurchasePrice) *
     100
   ).toFixed(2)}%`;
-
 });
 
 function calculateLoanAmount(
@@ -111,4 +109,38 @@ function calculateAffordablePurchasePrice(loanAmount, downPayment) {
   return affordablePurchasePrice;
 }
 
+const interestRateSelect = document.getElementById("interest-rate");
+const interestRateInputContainer = document.getElementById(
+  "interest-rate-input-container"
+);
 
+interestRateSelect.addEventListener("change", function () {
+  if (interestRateSelect.value === "own-rate") {
+    interestRateInputContainer.style.display = "block";
+  } else {
+    interestRateInputContainer.style.display = "none";
+  }
+});
+
+function getInterestRate() {
+  const interestRateSelect = document.getElementById("interest-rate");
+  switch (interestRateSelect.value) {
+    case "own-rate":
+      return document.getElementById("interest-rate-input").value;
+    case "avg-prime-10":
+      return 3.30;
+    case "avg-prime-20":
+      return 3.67;
+
+    case "lowest-prime-10":
+      return 2.45
+
+    case "lowest-prime-20":
+      return 2.25
+    case "highest-prime-10":
+      return 6.7
+
+    case "highest-prime-20":
+      return 6.7
+  }
+}

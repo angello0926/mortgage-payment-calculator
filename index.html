@@ -81,7 +81,7 @@
       </div>
     </section>
     <section
-      class="bg-pink bg-[url(./hero-3.png)] sm:bg-none sm:bg-pink bg-cover bg-center p-8 sm:w-screen sm:flex sm:justify-center"
+      class="bg-yellow bg-[url(./hero-3.png)] sm:bg-none sm:bg-yellow bg-cover bg-center p-8 sm:w-screen sm:flex sm:justify-center"
     >
       <div class="w-full sm:max-w-sm">
         <h1
@@ -93,7 +93,9 @@
       </div>
       <img src="./hero-3.png" class="hidden max-w-sm sm:block" />
     </section>
-    <section class="bg-darkBlue p-8 py-16 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 md:pl-20">
+    <section
+      class="bg-darkBlue p-8 py-16 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 md:pl-20"
+    >
       <h1 class="text-yellow font-bold text-4xl text-left text-white mb-10">
         Enter Your Budget
       </h1>
@@ -117,12 +119,41 @@
             <option value="monthly">Monthly</option>
           </select>
           <label for="interest-rate">Annual Interest Rate (in %)</label>
-          <input
-            type="number"
-            class="rounded rounded-full bg-slate-200 text-gray-900"
+          <select
             id="interest-rate"
-            step="0.01"
-          />
+            class="p-[10px] rounded rounded-lg bg-slate-200 text-gray-900"
+          >
+            <option value="own-rate">Use Your Own Rate</option>
+            <option value="avg-prime-10">
+              3.30% - Use Canada Average Prime Rate in last 10 Years*
+            </option>
+            <option value="avg-prime-20">
+              3.67% - Use Canada Average Prime Rate in last 20 Years*
+            </option>
+            <option value="lowest-prime-10">
+              2.45% - Use Canada Lowest Prime Rate in last 10 Years*
+            </option>
+            <option value="lowest-prime-20">
+              2.25% - Use Canada Lowest Prime Rate in last 20 Years*
+            </option>
+            <option value="highest-prime-10">
+              6.7% - Use Canada Highest Prime Rate in last 10 Years*
+            </option>
+            <option value="highest-prime-20">
+              6.7% - Use Canada Highest Prime Rate in last 20 Years*
+            </option>
+          </select>
+          <div id="interest-rate-input-container">
+            <label for="interest-rate-input"
+              >Enter Your Interest Rate (in %)</label
+            >
+            <input
+              type="number"
+              class="rounded rounded-full bg-slate-200 text-gray-900"
+              id="interest-rate-input"
+              step="0.01"
+            />
+          </div>
           <label for="loan-term">Loan Term (in years):</label>
           <input
             type="number"
@@ -143,6 +174,16 @@
         >
           Calculate
         </button>
+        <p class="text-white mt-10 font-semibold text-sm">
+          * Source of Prime Rates Used as of June 2023:
+          <a
+            class="underline"
+            href="https://wowa.ca/banks/prime-rates-canada"
+            target="_blank"
+            rel="noopener noreferrer"
+            >https://wowa.ca/banks/prime-rates-canada</a
+          >
+        </p>
       </form>
     </section>
 
